@@ -7,14 +7,16 @@
 <title>MyBot Documentation</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;900&display=swap');
+
 *{
     box-sizing:border-box;
-    font-family:Tahoma, Arial;
+    font-family:Vazirmatn,Tahoma;
 }
 
 body{
     margin:0;
-    background:#080808;
+    background:#050505;
     color:#eee;
 }
 
@@ -22,27 +24,27 @@ body{
 /* Header */
 
 header{
-    height:90px;
+    padding:25px 60px;
     display:flex;
-    align-items:center;
     justify-content:space-between;
-    padding:0 50px;
-    background:#0d0d0d;
+    align-items:center;
+    background:#090909;
     border-bottom:1px solid #222;
     position:sticky;
     top:0;
+    z-index:10;
 }
 
 .logo{
-    font-size:28px;
-    font-weight:bold;
+    font-size:35px;
+    font-weight:900;
     color:#00ff99;
 }
 
 nav a{
     color:#aaa;
-    margin:15px;
     text-decoration:none;
+    margin:15px;
 }
 
 nav a:hover{
@@ -53,14 +55,19 @@ nav a:hover{
 /* Hero */
 
 .hero{
+    min-height:600px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
     text-align:center;
-    padding:100px 20px;
+
     background:
-    radial-gradient(circle,#123 0%,#080808 60%);
+    radial-gradient(circle at top,#003b25,#050505 60%);
 }
 
 .hero h1{
-    font-size:60px;
+    font-size:80px;
     margin:0;
 }
 
@@ -69,108 +76,135 @@ nav a:hover{
 }
 
 .hero p{
+    font-size:25px;
     color:#aaa;
-    font-size:20px;
 }
 
 
 .button{
-    display:inline-block;
     margin-top:30px;
-    padding:15px 35px;
+    padding:18px 50px;
+    border-radius:50px;
     background:#00ff99;
     color:#000;
-    border-radius:12px;
-    text-decoration:none;
     font-weight:bold;
+    text-decoration:none;
 }
 
 
-/* Layout */
+/* Docs */
 
 .container{
-    display:flex;
     max-width:1300px;
     margin:auto;
-}
-
-
-.sidebar{
-    width:280px;
-    padding:30px;
-    border-left:1px solid #222;
-}
-
-.sidebar a{
-    display:block;
-    color:#aaa;
-    padding:12px;
-    text-decoration:none;
-    border-radius:8px;
-}
-
-.sidebar a:hover{
-    background:#111;
-    color:#00ff99;
-}
-
-
-.content{
-    flex:1;
-    padding:40px;
+    padding:50px;
 }
 
 
 .card{
-    background:#111;
+
+    background:
+    linear-gradient(
+    145deg,
+    #111,
+    #080808
+    );
+
     border:1px solid #222;
-    padding:25px;
-    border-radius:20px;
-    margin-bottom:25px;
+
+    border-radius:30px;
+
+    padding:35px;
+
+    margin-bottom:35px;
+
+    box-shadow:
+    0 0 40px #000;
+
+}
+
+
+.card:hover{
+
+    border-color:#00ff99;
+
+    transform:translateY(-5px);
+
+    transition:.3s;
+
 }
 
 
 h2{
+
     color:#00ff99;
+
+    font-size:35px;
+
 }
+
+
+
+p{
+
+    line-height:2;
+
+    color:#ccc;
+
+}
+
 
 
 code{
+
     display:block;
-    background:#050505;
-    border:1px solid #222;
-    padding:20px;
-    border-radius:12px;
+
     direction:ltr;
+
     text-align:left;
+
+    background:#000;
+
+    border:1px solid #222;
+
+    padding:25px;
+
+    border-radius:20px;
+
     color:#00ff99;
+
+    overflow:auto;
+
+    font-size:17px;
+
 }
+
+
+
+.grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+
+gap:25px;
+
+}
+
 
 
 footer{
-    text-align:center;
-    padding:40px;
-    color:#777;
-    border-top:1px solid #222;
-}
 
+text-align:center;
 
+padding:50px;
 
-@media(max-width:800px){
+color:#777;
 
-.container{
-    flex-direction:column;
-}
-
-.sidebar{
-    width:100%;
-}
-
-.hero h1{
-    font-size:40px;
-}
+border-top:1px solid #222;
 
 }
+
 
 </style>
 
@@ -186,10 +220,17 @@ footer{
 🤖 MyBot
 </div>
 
+
 <nav>
+
 <a href="#">Docs</a>
+
+<a href="#">API</a>
+
 <a href="#">GitHub</a>
+
 <a href="#">PyPI</a>
+
 </nav>
 
 </header>
@@ -199,16 +240,18 @@ footer{
 <section class="hero">
 
 <h1>
-MyBot <span>Documentation</span>
+MyBot <span>Docs</span>
 </h1>
 
 <p>
-کتابخانه قدرتمند ساخت ربات با پایتون
+کتابخانه حرفه‌ای ساخت ربات با پایتون
 </p>
 
-<a class="button" href="#">
-شروع کار
+
+<a class="button">
+شروع کنید 🚀
 </a>
+
 
 </section>
 
@@ -217,58 +260,36 @@ MyBot <span>Documentation</span>
 <div class="container">
 
 
-<aside class="sidebar">
-
-<a href="#install">
-نصب
-</a>
-
-<a href="#start">
-شروع سریع
-</a>
-
-<a href="#button">
-دکمه‌ها
-</a>
-
-<a href="#photo">
-ارسال عکس
-</a>
-
-<a href="#api">
-API
-</a>
-
-</aside>
+<div class="grid">
 
 
-
-<main class="content">
-
-
-<div class="card" id="install">
+<div class="card">
 
 <h2>
-نصب MyBot
+📦 نصب
 </h2>
 
 <p>
-برای نصب کتابخانه:
+نصب MyBot از PyPI:
 </p>
+
 
 <code>
 pip install mybot
 </code>
 
+
 </div>
 
 
 
-<div class="card" id="start">
+
+<div class="card">
 
 <h2>
-اولین ربات
+🚀 شروع سریع
 </h2>
+
 
 <code>
 
@@ -288,59 +309,148 @@ app.run_polling()
 
 
 
-<div class="card" id="button">
+</div>
+
+
+
+<div class="card">
 
 <h2>
-ساخت دکمه
+🎛️ سیستم دکمه‌ها
 </h2>
+
+<p>
+ساخت دکمه‌های تعاملی برای کاربران.
+</p>
+
 
 <code>
 
 InlineKeyboardButton(
-"Click",
-callback_data="test"
+    text="Click",
+    callback_data="test"
 )
 
 </code>
+
 
 </div>
 
 
 
-<div class="card" id="photo">
+
+
+<div class="card">
 
 <h2>
-ارسال عکس
+📸 ارسال عکس
 </h2>
+
+
+<p>
+ارسال عکس با Media ID:
+</p>
+
 
 <code>
 
 await bot.send_photo(
-chat_id=id,
+
+chat_id=user_id,
+
 photo="MEDIA_ID"
+
 )
 
 </code>
+
 
 </div>
 
 
 
-<div class="card" id="api">
+
+
+<div class="card">
 
 <h2>
-API Reference
+⚡ قابلیت‌ها
+</h2>
+
+<ul>
+
+<li>ساخت ربات سریع</li>
+
+<li>مدیریت پیام‌ها</li>
+
+<li>دکمه‌های حرفه‌ای</li>
+
+<li>مدیریت مدیا</li>
+
+<li>Callback Query</li>
+
+<li>API ساده</li>
+
+</ul>
+
+
+</div>
+
+
+
+
+
+<div class="card">
+
+<h2>
+🔐 امنیت
 </h2>
 
 <p>
-تمام متدهای MyBot برای ساخت ربات‌های حرفه‌ای.
+
+توکن ربات را امن نگه دارید.
+<br>
+هیچ وقت آن را در کد عمومی منتشر نکنید.
+
 </p>
 
 </div>
 
 
 
-</main>
+
+
+<div class="card">
+
+<h2>
+📚 مثال کامل
+</h2>
+
+
+<code>
+
+from mybot import Application
+
+
+TOKEN="YOUR_TOKEN"
+
+
+app = Application.builder()\
+.token(TOKEN)\
+.build()
+
+
+print("Bot Started 🚀")
+
+
+app.run_polling()
+
+</code>
+
+
+</div>
+
+
 
 </div>
 
@@ -348,12 +458,14 @@ API Reference
 
 <footer>
 
-MyBot © 2026  
+MyBot Documentation © 2026
+
 <br>
-Built with ❤️
+
 
 </footer>
 
 
 </body>
+
 </html>
