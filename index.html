@@ -4,84 +4,172 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Radvin Docs</title>
+<title>MyBot Documentation</title>
 
 <style>
-* {
-    box-sizing: border-box;
-    font-family: Tahoma, Arial;
+*{
+    box-sizing:border-box;
+    font-family:Tahoma, Arial;
 }
 
-body {
-    margin: 0;
-    background: #0f172a;
-    color: #e5e7eb;
-}
-
-header {
-    padding: 40px;
-    text-align: center;
-    background: linear-gradient(135deg,#2563eb,#7c3aed);
-}
-
-header h1 {
-    font-size: 45px;
-    margin: 0;
-}
-
-header p {
-    font-size: 20px;
+body{
+    margin:0;
+    background:#080808;
+    color:#eee;
 }
 
 
-.container {
-    max-width: 1000px;
-    margin: auto;
-    padding: 30px;
+/* Header */
+
+header{
+    height:90px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 50px;
+    background:#0d0d0d;
+    border-bottom:1px solid #222;
+    position:sticky;
+    top:0;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+    color:#00ff99;
+}
+
+nav a{
+    color:#aaa;
+    margin:15px;
+    text-decoration:none;
+}
+
+nav a:hover{
+    color:#00ff99;
 }
 
 
-.card {
-    background: #1e293b;
-    padding: 25px;
-    border-radius: 15px;
-    margin-bottom: 25px;
+/* Hero */
+
+.hero{
+    text-align:center;
+    padding:100px 20px;
+    background:
+    radial-gradient(circle,#123 0%,#080808 60%);
+}
+
+.hero h1{
+    font-size:60px;
+    margin:0;
+}
+
+.hero span{
+    color:#00ff99;
+}
+
+.hero p{
+    color:#aaa;
+    font-size:20px;
 }
 
 
-h2 {
-    color:#60a5fa;
+.button{
+    display:inline-block;
+    margin-top:30px;
+    padding:15px 35px;
+    background:#00ff99;
+    color:#000;
+    border-radius:12px;
+    text-decoration:none;
+    font-weight:bold;
 }
 
 
-code {
+/* Layout */
+
+.container{
+    display:flex;
+    max-width:1300px;
+    margin:auto;
+}
+
+
+.sidebar{
+    width:280px;
+    padding:30px;
+    border-left:1px solid #222;
+}
+
+.sidebar a{
     display:block;
-    background:#020617;
-    padding:15px;
-    border-radius:10px;
+    color:#aaa;
+    padding:12px;
+    text-decoration:none;
+    border-radius:8px;
+}
+
+.sidebar a:hover{
+    background:#111;
+    color:#00ff99;
+}
+
+
+.content{
+    flex:1;
+    padding:40px;
+}
+
+
+.card{
+    background:#111;
+    border:1px solid #222;
+    padding:25px;
+    border-radius:20px;
+    margin-bottom:25px;
+}
+
+
+h2{
+    color:#00ff99;
+}
+
+
+code{
+    display:block;
+    background:#050505;
+    border:1px solid #222;
+    padding:20px;
+    border-radius:12px;
     direction:ltr;
     text-align:left;
-    overflow:auto;
+    color:#00ff99;
 }
 
 
-button {
-    background:#2563eb;
-    border:none;
-    color:white;
-    padding:12px 25px;
-    border-radius:10px;
-    cursor:pointer;
-}
-
-a {
-    color:#93c5fd;
-}
-
-footer {
+footer{
     text-align:center;
-    padding:30px;
-    opacity:.7;
+    padding:40px;
+    color:#777;
+    border-top:1px solid #222;
+}
+
+
+
+@media(max-width:800px){
+
+.container{
+    flex-direction:column;
+}
+
+.sidebar{
+    width:100%;
+}
+
+.hero h1{
+    font-size:40px;
+}
+
 }
 
 </style>
@@ -94,67 +182,102 @@ footer {
 
 <header>
 
-<h1>🚀 Radvin Framework</h1>
+<div class="logo">
+🤖 MyBot
+</div>
 
-<p>
-Async Bot Framework مشابه Telegram Bot Libraries
-</p>
+<nav>
+<a href="#">Docs</a>
+<a href="#">GitHub</a>
+<a href="#">PyPI</a>
+</nav>
 
 </header>
+
+
+
+<section class="hero">
+
+<h1>
+MyBot <span>Documentation</span>
+</h1>
+
+<p>
+کتابخانه قدرتمند ساخت ربات با پایتون
+</p>
+
+<a class="button" href="#">
+شروع کار
+</a>
+
+</section>
 
 
 
 <div class="container">
 
 
-<div class="card">
+<aside class="sidebar">
 
-<h2>نصب</h2>
+<a href="#install">
+نصب
+</a>
+
+<a href="#start">
+شروع سریع
+</a>
+
+<a href="#button">
+دکمه‌ها
+</a>
+
+<a href="#photo">
+ارسال عکس
+</a>
+
+<a href="#api">
+API
+</a>
+
+</aside>
+
+
+
+<main class="content">
+
+
+<div class="card" id="install">
+
+<h2>
+نصب MyBot
+</h2>
+
+<p>
+برای نصب کتابخانه:
+</p>
 
 <code>
-pip install radvin
+pip install mybot
 </code>
 
 </div>
 
 
 
-<div class="card">
+<div class="card" id="start">
 
-<h2>شروع سریع</h2>
-
+<h2>
+اولین ربات
+</h2>
 
 <code>
-from radvin import (
-    Application,
-    CommandHandler
-)
+
+from mybot import Application
 
 
-TOKEN = "BOT_TOKEN"
-
-
-async def start(update, context):
-
-    await update.message.reply_text(
-        "سلام از Radvin 🚀"
-    )
-
-
-app = (
-    Application
-    .builder()
-    .token(TOKEN)
-    .build()
-)
-
-
-app.add_handler(
-    CommandHandler(
-        "start",
-        start
-    )
-)
+app = Application.builder()\
+.token("TOKEN")\
+.build()
 
 
 app.run_polling()
@@ -165,114 +288,59 @@ app.run_polling()
 
 
 
+<div class="card" id="button">
 
-<div class="card">
-
-<h2>ارسال پیام</h2>
-
+<h2>
+ساخت دکمه
+</h2>
 
 <code>
-await update.message.reply_text(
-    "Hello Radvin"
-)
-</code>
 
+InlineKeyboardButton(
+"Click",
+callback_data="test"
+)
+
+</code>
 
 </div>
 
 
 
+<div class="card" id="photo">
 
-<div class="card">
-
-<h2>ارسال عکس</h2>
-
+<h2>
+ارسال عکس
+</h2>
 
 <code>
-await update.message.reply_photo(
-    "https://example.com/image.jpg",
-    caption="Radvin"
+
+await bot.send_photo(
+chat_id=id,
+photo="MEDIA_ID"
 )
 
 </code>
-
 
 </div>
 
 
 
+<div class="card" id="api">
 
-<div class="card">
-
-<h2>دکمه Inline</h2>
-
-
-<code>
-
-keyboard = InlineKeyboardMarkup([
- [
-  InlineKeyboardButton(
-   "Website",
-   url="https://example.com"
-  )
- ]
-])
-
-
-await update.message.reply_text(
-    "Click",
-    reply_markup=keyboard
-)
-
-</code>
-
-
-</div>
-
-
-
-
-<div class="card">
-
-<h2>Handlers</h2>
-
+<h2>
+API Reference
+</h2>
 
 <p>
-CommandHandler برای دستورات
+تمام متدهای MyBot برای ساخت ربات‌های حرفه‌ای.
 </p>
-
-<p>
-MessageHandler برای پیام‌ها
-</p>
-
-
-<code>
-
-app.add_handler(
- MessageHandler(
-  filters.TEXT,
-  echo
- )
-)
-
-</code>
-
 
 </div>
 
 
 
-
-<div class="card">
-
-<h2>GitHub</h2>
-
-<a href="#">
-github.com/radvin226/radvin
-</a>
-
-</div>
-
+</main>
 
 </div>
 
@@ -280,7 +348,9 @@ github.com/radvin226/radvin
 
 <footer>
 
-Radvin Framework © 2026
+MyBot © 2026  
+<br>
+Built with ❤️
 
 </footer>
 
