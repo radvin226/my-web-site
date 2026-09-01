@@ -1,145 +1,410 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>MyBot Documentation</title>
+<title>MyBot Docs</title>
+
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;900&display=swap');
+
+
+:root{
+
+--bg:#050505;
+--card:#0d0d0d;
+--green:#00ff99;
+--text:#eeeeee;
+--gray:#999;
+
+}
+
+
 
 *{
-    box-sizing:border-box;
-    font-family:Vazirmatn,Tahoma;
+
+box-sizing:border-box;
+font-family:Vazirmatn,Tahoma;
+
 }
+
+
+
+html{
+
+scroll-behavior:smooth;
+
+}
+
+
 
 body{
-    margin:0;
-    background:#050505;
-    color:#eee;
+
+margin:0;
+
+background:
+radial-gradient(circle at top,#063b30,#050505 45%);
+
+color:var(--text);
+
 }
 
 
-/* Header */
+
+
+/* LOADING */
+
+
+#loader{
+
+position:fixed;
+
+inset:0;
+
+background:#050505;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+z-index:9999;
+
+}
+
+
+
+.loader-ring{
+
+width:130px;
+
+height:130px;
+
+border-radius:50%;
+
+border:8px solid #222;
+
+border-top-color:#00ff99;
+
+animation:spin 1s linear infinite;
+
+}
+
+
+@keyframes spin{
+
+to{
+
+transform:rotate(360deg);
+
+}
+
+}
+
+
+
+
+
+/* HEADER */
+
 
 header{
-    padding:25px 60px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    background:#090909;
-    border-bottom:1px solid #222;
-    position:sticky;
-    top:0;
-    z-index:10;
+
+height:85px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+padding:0 45px;
+
+position:sticky;
+
+top:0;
+
+z-index:100;
+
+background:#080808dd;
+
+backdrop-filter:blur(20px);
+
+border-bottom:1px solid #222;
+
 }
+
+
 
 .logo{
-    font-size:35px;
-    font-weight:900;
-    color:#00ff99;
+
+font-size:34px;
+
+font-weight:900;
+
+color:#00ff99;
+
 }
+
+
 
 nav a{
-    color:#aaa;
-    text-decoration:none;
-    margin:15px;
+
+text-decoration:none;
+
+color:#aaa;
+
+margin:15px;
+
 }
+
 
 nav a:hover{
-    color:#00ff99;
+
+color:#00ff99;
+
 }
 
 
-/* Hero */
+
+
+
+
+/* HERO */
+
 
 .hero{
-    min-height:600px;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
 
-    background:
-    radial-gradient(circle at top,#003b25,#050505 60%);
+min-height:600px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+flex-direction:column;
+
+text-align:center;
+
 }
+
+
+
+.robot{
+
+width:220px;
+
+filter:
+
+drop-shadow(0 0 40px #00ff99);
+
+animation:float 4s infinite;
+
+}
+
+
+
+@keyframes float{
+
+50%{
+
+transform:translateY(-25px);
+
+}
+
+}
+
+
+
 
 .hero h1{
-    font-size:80px;
-    margin:0;
+
+font-size:90px;
+
+margin:20px 0;
+
+font-weight:900;
+
 }
+
+
 
 .hero span{
-    color:#00ff99;
+
+color:#00ff99;
+
+text-shadow:
+
+0 0 30px #00ff99;
+
 }
+
+
 
 .hero p{
-    font-size:25px;
-    color:#aaa;
-}
 
+font-size:25px;
 
-.button{
-    margin-top:30px;
-    padding:18px 50px;
-    border-radius:50px;
-    background:#00ff99;
-    color:#000;
-    font-weight:bold;
-    text-decoration:none;
-}
-
-
-/* Docs */
-
-.container{
-    max-width:1300px;
-    margin:auto;
-    padding:50px;
-}
-
-
-.card{
-
-    background:
-    linear-gradient(
-    145deg,
-    #111,
-    #080808
-    );
-
-    border:1px solid #222;
-
-    border-radius:30px;
-
-    padding:35px;
-
-    margin-bottom:35px;
-
-    box-shadow:
-    0 0 40px #000;
+color:#aaa;
 
 }
 
 
-.card:hover{
 
-    border-color:#00ff99;
+.start-btn{
 
-    transform:translateY(-5px);
+margin-top:30px;
 
-    transition:.3s;
+background:#00ff99;
+
+color:#000;
+
+padding:18px 55px;
+
+border-radius:50px;
+
+text-decoration:none;
+
+font-weight:bold;
 
 }
+
+
+
+
+
+/* DOC AREA */
+
+
+.docs{
+
+max-width:1500px;
+
+margin:auto;
+
+display:flex;
+
+}
+
+
+
+.sidebar{
+
+width:300px;
+
+padding:30px;
+
+position:sticky;
+
+top:100px;
+
+height:max-content;
+
+}
+
+
+
+.sidebar-title{
+
+font-size:20px;
+
+font-weight:bold;
+
+color:#00ff99;
+
+}
+
+
+
+.sidebar a{
+
+display:block;
+
+padding:14px;
+
+margin:8px 0;
+
+border-radius:15px;
+
+text-decoration:none;
+
+color:#aaa;
+
+}
+
+
+
+.sidebar a:hover{
+
+background:#111;
+
+color:#00ff99;
+
+}
+
+
+
+.content{
+
+flex:1;
+
+padding:40px;
+
+}
+
+
+
+
+
+.box{
+
+background:
+
+linear-gradient(
+145deg,
+#111,
+#090909
+);
+
+
+border:1px solid #222;
+
+border-radius:30px;
+
+padding:35px;
+
+margin-bottom:30px;
+
+transition:.3s;
+
+}
+
+
+
+.box:hover{
+
+border-color:#00ff99;
+
+transform:translateY(-3px);
+
+}
+
+
+
 
 
 h2{
 
-    color:#00ff99;
+font-size:35px;
 
-    font-size:35px;
+color:#00ff99;
 
 }
 
@@ -147,9 +412,30 @@ h2{
 
 p{
 
-    line-height:2;
+line-height:2;
 
-    color:#ccc;
+color:#ccc;
+
+}
+
+
+
+
+pre{
+
+background:#000;
+
+border:1px solid #222;
+
+padding:25px;
+
+border-radius:20px;
+
+direction:ltr;
+
+text-align:left;
+
+overflow:auto;
 
 }
 
@@ -157,140 +443,388 @@ p{
 
 code{
 
-    display:block;
+color:#00ff99;
 
-    direction:ltr;
-
-    text-align:left;
-
-    background:#000;
-
-    border:1px solid #222;
-
-    padding:25px;
-
-    border-radius:20px;
-
-    color:#00ff99;
-
-    overflow:auto;
-
-    font-size:17px;
+font-size:16px;
 
 }
 
 
 
-.grid{
 
-display:grid;
 
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+.copy{
 
-gap:25px;
+float:left;
+
+background:#00ff99;
+
+color:#000;
+
+border:0;
+
+padding:8px 20px;
+
+border-radius:15px;
+
+cursor:pointer;
+
+}
+
+
+
+
+
+table{
+
+width:100%;
+
+border-collapse:collapse;
 
 }
 
 
 
-footer{
+td,th{
 
-text-align:center;
+border:1px solid #333;
 
-padding:50px;
-
-color:#777;
-
-border-top:1px solid #222;
+padding:15px;
 
 }
+
+
+
+th{
+
+color:#00ff99;
+
+}
+
+
+
+
+
+
+
+/* MOBILE */
+
+
+@media(max-width:900px){
+
+
+.docs{
+
+flex-direction:column;
+
+}
+
+
+
+.sidebar{
+
+width:100%;
+
+position:relative;
+
+}
+
+
+
+.hero h1{
+
+font-size:45px;
+
+}
+
+
+nav{
+
+display:none;
+
+}
+
+
+}
+
+
 
 
 </style>
 
+
 </head>
+
 
 
 <body>
 
 
+
+<div id="loader">
+
+<div class="loader-ring"></div>
+
+</div>
+
+
+
+
+
 <header>
 
+
 <div class="logo">
+
 🤖 MyBot
+
 </div>
+
 
 
 <nav>
 
-<a href="#">Docs</a>
+<a href="#intro">Docs</a>
 
-<a href="#">API</a>
+<a href="#api">API</a>
 
-<a href="#">GitHub</a>
-
-<a href="#">PyPI</a>
+<a href="#examples">Examples</a>
 
 </nav>
+
+
 
 </header>
 
 
 
+
+
+
 <section class="hero">
 
+
+<svg class="robot" viewBox="0 0 200 200">
+
+
+<rect x="35" y="50"
+width="130"
+height="100"
+rx="25"
+fill="#111"
+stroke="#00ff99"
+stroke-width="5"/>
+
+
+<circle cx="75" cy="90" r="12"
+fill="#00ff99"/>
+
+
+<circle cx="125" cy="90" r="12"
+fill="#00ff99"/>
+
+
+<rect x="70" y="120"
+width="60"
+height="10"
+fill="#00ff99"/>
+
+
+<line x1="100" y1="50"
+x2="100" y2="20"
+stroke="#00ff99"
+stroke-width="5"/>
+
+
+<circle cx="100" cy="15"
+r="8"
+fill="#00ff99"/>
+
+
+</svg>
+
+
+
+
+
 <h1>
-MyBot <span>Docs</span>
+
+MyBot
+
+<span>
+
+Docs
+
+</span>
+
 </h1>
 
+
+
 <p>
-کتابخانه حرفه‌ای ساخت ربات با پایتون
+Professional Python Bot Framework
 </p>
 
 
-<a class="button">
-شروع کنید 🚀
+<a class="start-btn">
+
+شروع سریع 🚀
+
 </a>
+
 
 
 </section>
 
 
 
-<div class="container">
 
 
-<div class="grid">
+
+<div class="docs">
 
 
-<div class="card">
-
-<h2>
-📦 نصب
-</h2>
-
-<p>
-نصب MyBot از PyPI:
-</p>
+<aside class="sidebar">
 
 
-<code>
-pip install mybot
-</code>
-
-
+<div class="sidebar-title">
+Documentation
 </div>
 
 
+<a href="#intro">
+🤖 Introduction
+</a>
 
 
-<div class="card">
+<a href="#install">
+📦 Installation
+</a>
+
+
+<a href="#quick">
+🚀 Quick Start
+</a>
+
+
+<a href="#api">
+⚙ API Reference
+</a>
+
+
+<a href="#examples">
+💻 Examples
+</a>
+
+
+</aside>
+
+
+
+<main class="content">
+    <!-- INTRO -->
+
+<section class="box" id="intro">
+
+<h2>🤖 MyBot چیست؟</h2>
+
+<p>
+
+MyBot یک فریم‌ورک مدرن پایتون برای ساخت ربات‌های حرفه‌ای است.
+هدف MyBot ساده کردن ساخت ربات‌های سریع، امن و قابل توسعه است.
+
+</p>
+
+
+<ul>
+
+<li>⚡ سرعت بالا</li>
+
+<li>🧩 سیستم Handler قدرتمند</li>
+
+<li>📸 پشتیبانی Media</li>
+
+<li>🎛 دکمه‌های تعاملی</li>
+
+<li>🔒 مدیریت خطا</li>
+
+</ul>
+
+
+</section>
+
+
+
+
+
+<!-- INSTALL -->
+
+<section class="box" id="install">
+
+
+<h2>📦 Installation</h2>
+
+
+<p>
+نصب از PyPI:
+</p>
+
+
+<button class="copy">
+Copy
+</button>
+
+
+<pre>
+<code>
+pip install mybot
+</code>
+</pre>
+
+
+
+<p>
+آپدیت کردن:
+</p>
+
+
+<pre>
+<code>
+pip install --upgrade mybot
+</code>
+</pre>
+
+
+</section>
+
+
+
+
+
+
+
+<!-- QUICK START -->
+
+
+<section class="box" id="quick">
+
 
 <h2>
-🚀 شروع سریع
+🚀 Quick Start
 </h2>
 
 
+<p>
+اولین ربات خود را بسازید:
+</p>
+
+
+<button class="copy">
+Copy
+</button>
+
+
+<pre>
 <code>
 
 from mybot import Application
@@ -301,37 +835,213 @@ app = Application.builder()\
 .build()
 
 
+
 app.run_polling()
 
 </code>
-
-</div>
-
-
-
-</div>
+</pre>
 
 
 
-<div class="card">
+</section>
+
+
+
+
+
+
+
+
+
+<!-- TOKEN -->
+
+<section class="box">
+
 
 <h2>
-🎛️ سیستم دکمه‌ها
+🔑 Token
 </h2>
 
+
 <p>
-ساخت دکمه‌های تعاملی برای کاربران.
+
+توکن ربات خود را از Bot Creator دریافت کنید
+و در برنامه قرار دهید.
+
 </p>
 
 
+<pre>
 <code>
 
-InlineKeyboardButton(
-    text="Click",
-    callback_data="test"
+TOKEN = "YOUR_BOT_TOKEN"
+
+</code>
+</pre>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- HANDLER -->
+
+<section class="box">
+
+
+<h2>
+🧩 Handler System
+</h2>
+
+
+<p>
+
+Handler ها رفتارهای ربات را کنترل می‌کنند.
+
+</p>
+
+
+
+<table>
+
+
+<tr>
+
+<th>
+Handler
+</th>
+
+
+<th>
+کاربرد
+</th>
+
+
+</tr>
+
+
+
+<tr>
+
+<td>
+
+CommandHandler
+
+</td>
+
+<td>
+
+دستورهایی مثل /start
+
+</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>
+
+MessageHandler
+
+</td>
+
+<td>
+
+دریافت پیام کاربر
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+
+CallbackHandler
+
+</td>
+
+<td>
+
+دکمه‌های Inline
+
+</td>
+
+</tr>
+
+
+</table>
+
+
+
+<pre>
+<code>
+
+app.add_handler(
+
+CommandHandler(
+"start",
+start
+)
+
 )
 
 </code>
+</pre>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- MESSAGE API -->
+
+<section class="box" id="api">
+
+
+<h2>
+⚙ API Reference
+</h2>
+
+
+<div class="box">
+
+
+<h3>
+reply_text()
+</h3>
+
+
+<p>
+ارسال پیام متنی
+</p>
+
+
+<pre>
+<code>
+
+await message.reply_text(
+"Hello MyBot"
+)
+
+</code>
+</pre>
 
 
 </div>
@@ -340,18 +1050,20 @@ InlineKeyboardButton(
 
 
 
-<div class="card">
+<div class="box">
 
-<h2>
-📸 ارسال عکس
-</h2>
+
+<h3>
+send_photo()
+</h3>
 
 
 <p>
-ارسال عکس با Media ID:
+ارسال تصویر با Media ID
 </p>
 
 
+<pre>
 <code>
 
 await bot.send_photo(
@@ -363,6 +1075,7 @@ photo="MEDIA_ID"
 )
 
 </code>
+</pre>
 
 
 </div>
@@ -371,99 +1084,509 @@ photo="MEDIA_ID"
 
 
 
-<div class="card">
 
-<h2>
-⚡ قابلیت‌ها
-</h2>
 
-<ul>
+<div class="box">
 
-<li>ساخت ربات سریع</li>
 
-<li>مدیریت پیام‌ها</li>
+<h3>
+edit_message()
+</h3>
 
-<li>دکمه‌های حرفه‌ای</li>
 
-<li>مدیریت مدیا</li>
+<p>
+ویرایش پیام ارسال شده
+</p>
 
-<li>Callback Query</li>
 
-<li>API ساده</li>
+<pre>
+<code>
 
-</ul>
+await bot.edit_message(
+
+message_id=id,
+
+text="New Text"
+
+)
+
+</code>
+</pre>
 
 
 </div>
 
 
 
+</section>
 
 
-<div class="card">
+
+
+
+
+
+
+
+<!-- MEDIA -->
+
+
+<section class="box">
+
 
 <h2>
-🔐 امنیت
+📸 Media System
 </h2>
+
 
 <p>
 
-توکن ربات را امن نگه دارید.
-<br>
-هیچ وقت آن را در کد عمومی منتشر نکنید.
-
+برای فایل‌ها می‌توانید از Media ID استفاده کنید.
 </p>
 
-</div>
+
+<pre>
+<code>
+
+PHOTO_ID =
+"8281b0fb-1bd4-43fa-bca0-59364e99ea7a"
+
+
+
+await bot.send_photo(
+
+chat_id=user,
+
+photo=PHOTO_ID
+
+)
+
+</code>
+</pre>
+
+
+
+</section>
 
 
 
 
 
-<div class="card">
+
+
+
+
+<!-- KEYBOARD -->
+
+
+<section class="box">
+
 
 <h2>
-📚 مثال کامل
+🎛 Keyboard API
 </h2>
 
 
+<p>
+ساخت دکمه:
+</p>
+
+
+<pre>
+<code>
+
+button = InlineKeyboardButton(
+
+text="Click",
+
+callback_data="test"
+
+)
+
+
+keyboard = InlineKeyboardMarkup(
+
+[
+[button]
+]
+
+)
+
+</code>
+</pre>
+
+
+</section>
+<!-- EXAMPLES -->
+
+<section class="box" id="examples">
+
+<h2>
+💻 Examples
+</h2>
+
+
+<p>
+یک ربات ساده:
+</p>
+
+
+<button class="copy">
+Copy
+</button>
+
+
+<pre>
 <code>
 
 from mybot import Application
 
 
-TOKEN="YOUR_TOKEN"
+async def start(update, context):
+
+    await update.message.reply_text(
+        "سلام 👋 به MyBot خوش آمدید"
+    )
+
 
 
 app = Application.builder()\
-.token(TOKEN)\
+.token("TOKEN")\
 .build()
 
-
-print("Bot Started 🚀")
 
 
 app.run_polling()
 
 </code>
+</pre>
 
+
+</section>
+
+
+
+
+
+
+
+
+<!-- ERROR -->
+
+<section class="box">
+
+
+<h2>
+🛡 Error Handling
+</h2>
+
+
+<p>
+مدیریت خطا برای جلوگیری از توقف ربات.
+</p>
+
+
+<pre>
+<code>
+
+try:
+
+    app.run_polling()
+
+
+except Exception as error:
+
+    print(error)
+
+</code>
+</pre>
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- CHANGELOG -->
+
+
+<section class="box">
+
+
+<h2>
+🚀 Changelog
+</h2>
+
+
+<table>
+
+
+<tr>
+
+<th>
+Version
+</th>
+
+
+<th>
+Changes
+</th>
+
+
+</tr>
+
+
+<tr>
+
+<td>
+1.0.0
+</td>
+
+<td>
+اولین نسخه MyBot
+</td>
+
+
+</tr>
+
+
+
+<tr>
+
+<td>
+1.1.0
+</td>
+
+<td>
+اضافه شدن Media و Keyboard
+</td>
+
+
+</tr>
+
+
+</table>
+
+
+</section>
+
+
+
+
+
+</main>
 
 </div>
 
 
 
-</div>
 
 
 
-<footer>
-
-MyBot Documentation © 2026
-
-<br>
 
 
-</footer>
+<script>
+
+
+// LOADING
+
+window.onload=function(){
+
+document.getElementById("loader").style.display="none";
+
+};
+
+
+
+
+
+
+
+// COPY BUTTON
+
+
+document.querySelectorAll(".copy")
+.forEach(button=>{
+
+
+button.onclick=function(){
+
+
+let code =
+button.parentElement
+.querySelector("code")
+.innerText;
+
+
+
+navigator.clipboard.writeText(code);
+
+
+
+button.innerHTML="Copied ✓";
+
+
+
+setTimeout(()=>{
+
+button.innerHTML="Copy";
+
+},2000);
+
+
+
+};
+
+
+});
+
+
+
+
+
+
+
+
+// SCROLL ANIMATION
+
+
+const cards =
+document.querySelectorAll(".box");
+
+
+
+const observer =
+new IntersectionObserver(entries=>{
+
+
+entries.forEach(entry=>{
+
+
+if(entry.isIntersecting){
+
+
+entry.target.style.opacity="1";
+
+entry.target.style.transform=
+"translateY(0)";
+
+
+}
+
+
+});
+
+
+});
+
+
+
+cards.forEach(card=>{
+
+
+card.style.opacity="0";
+
+card.style.transform=
+"translateY(40px)";
+
+
+card.style.transition=
+"0.8s";
+
+
+observer.observe(card);
+
+
+});
+
+
+
+
+
+
+
+
+
+// SEARCH
+
+
+let search =
+document.createElement("input");
+
+
+search.placeholder=
+"🔎 Search Docs...";
+
+
+search.style.cssText=`
+
+width:90%;
+margin:20px;
+padding:18px;
+background:#111;
+border:1px solid #333;
+border-radius:20px;
+color:white;
+font-size:18px;
+
+`;
+
+
+
+document.querySelector(".content")
+.prepend(search);
+
+
+
+
+search.oninput=function(){
+
+
+let value=
+search.value.toLowerCase();
+
+
+
+document.querySelectorAll(".box")
+.forEach(box=>{
+
+
+if(box.innerText
+.toLowerCase()
+.includes(value)){
+
+
+box.style.display="block";
+
+
+}
+
+else{
+
+
+box.style.display="none";
+
+
+}
+
+
+
+});
+
+
+
+};
+
+
+
+
+
+</script>
+
 
 
 </body>
