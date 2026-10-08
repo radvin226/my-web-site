@@ -1,1 +1,886 @@
 
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b0d17">
+<title>NEXORA | پنل مدیریت</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg: #0b0d17;
+  --panel: #121522;
+  --panel2: #171b2b;
+  --border: #252a3d;
+  --text: #f4f5ff;
+  --muted: #8c93ad;
+  --purple: #8b5cf6;
+  --cyan: #22d3ee;
+  --green: #34d399;
+  --red: #fb7185;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Vazirmatn', Tahoma, sans-serif;
+  min-height: 100vh;
+}
+
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+
+.layout { display: flex; min-height: 100vh; }
+
+.sidebar {
+  width: 250px;
+  flex-shrink: 0;
+  background: #10121e;
+  border-left: 1px solid var(--border);
+  padding: 25px 17px;
+  display: flex;
+  flex-direction: column;
+  transition: transform .3s;
+  z-index: 20;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 10px 30px;
+  font-size: 22px;
+  font-weight: 800;
+  direction: ltr;
+  justify-content: flex-end;
+}
+
+.logo {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  color: white;
+  background: linear-gradient(135deg, #8b5cf6, #22d3ee);
+  box-shadow: 0 5px 25px #8b5cf633;
+}
+
+.nav-label {
+  color: #676e89;
+  font-size: 11px;
+  padding: 12px 13px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 13px 15px;
+  margin: 3px 0;
+  color: var(--muted);
+  border-radius: 12px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: .2s;
+  font-size: 13px;
+}
+
+.nav-item:hover, .nav-item.active {
+  color: white;
+  background: linear-gradient(100deg, #8b5cf626, #22d3ee0b);
+}
+
+.nav-item.active {
+  border-right: 3px solid var(--purple);
+}
+
+.nav-icon { font-size: 19px; width: 22px; text-align: center; }
+
+.sidebar-bottom {
+  margin-top: auto;
+  padding-top: 25px;
+}
+
+.plan {
+  background: linear-gradient(145deg, #201b3b, #131c2d);
+  border: 1px solid #373054;
+  border-radius: 16px;
+  padding: 17px;
+}
+
+.plan p { color: var(--muted); font-size: 11px; line-height: 2; }
+.plan button {
+  border: 0;
+  width: 100%;
+  border-radius: 9px;
+  padding: 10px;
+  color: white;
+  background: var(--purple);
+  font-size: 12px;
+}
+
+.main { flex: 1; min-width: 0; padding: 27px 32px; }
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 32px;
+}
+
+.top-right, .top-left { display: flex; align-items: center; gap: 15px; }
+
+h1 { font-size: 23px; margin: 0 0 7px; }
+.subtitle { color: var(--muted); font-size: 12px; }
+
+.search {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 11px 14px;
+  color: white;
+  width: 210px;
+  outline: none;
+}
+
+.search:focus, input:focus { border-color: var(--purple); }
+
+.icon-btn {
+  width: 43px;
+  height: 43px;
+  display: grid;
+  place-items: center;
+  background: var(--panel);
+  color: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  position: relative;
+}
+
+.dot {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 7px;
+  height: 7px;
+  background: var(--red);
+  border-radius: 50%;
+}
+
+.avatar {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 13px;
+  background: linear-gradient(135deg, #a78bfa, #6366f1);
+  color: white;
+  font-weight: 800;
+}
+
+.welcome {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.welcome h2 { margin: 0 0 7px; font-size: 21px; }
+.welcome p { margin: 0; color: var(--muted); font-size: 12px; }
+
+.primary-btn {
+  border: none;
+  color: white;
+  background: linear-gradient(110deg, #8b5cf6, #6d5dfc);
+  border-radius: 11px;
+  padding: 12px 17px;
+  box-shadow: 0 6px 22px #8b5cf622;
+  transition: transform .2s;
+}
+.primary-btn:hover { transform: translateY(-2px); }
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 17px;
+  margin-bottom: 22px;
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 17px;
+  padding: 20px;
+  min-width: 0;
+  transition: transform .25s, border-color .25s;
+  animation: rise .5s both;
+}
+
+.card:hover { transform: translateY(-3px); border-color: #45405f; }
+
+.stat-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 12px;
+  gap: 5px;
+}
+
+.stat-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 13px;
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+}
+
+.purple { background: #8b5cf622; color: #b69aff; }
+.blue { background: #22d3ee18; color: var(--cyan); }
+.green { background: #34d39918; color: var(--green); }
+.orange { background: #fb923c18; color: #fb923c; }
+
+.stat-number {
+  font-size: clamp(20px, 2.1vw, 29px);
+  font-weight: 800;
+  margin: 18px 0 10px;
+  direction: ltr;
+  text-align: right;
+}
+
+.stat-foot { font-size: 11px; color: var(--muted); }
+.positive { color: var(--green); }
+
+.content-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.8fr) minmax(250px, 1fr);
+  gap: 20px;
+  margin-bottom: 22px;
+}
+
+.card-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.card-title h3 { font-size: 14px; margin: 0; }
+.card-title p { font-size: 11px; color: var(--muted); margin: 6px 0 0; }
+
+select {
+  background: var(--panel2);
+  border: 1px solid var(--border);
+  color: white;
+  padding: 8px 10px;
+  border-radius: 9px;
+  outline: none;
+  font-size: 11px;
+}
+
+.chart-wrap { height: 240px; width: 100%; position: relative; }
+canvas { width: 100%; height: 100%; display: block; }
+
+.legend { display: flex; gap: 18px; color: var(--muted); font-size: 11px; }
+.legend span { display: flex; align-items: center; gap: 7px; }
+.legend i { width: 8px; height: 8px; border-radius: 50%; }
+
+.sources { display: flex; flex-direction: column; gap: 22px; }
+.source-head { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 9px; }
+.source-head span:last-child { color: var(--muted); }
+.progress { height: 7px; background: #252a3d; border-radius: 9px; overflow: hidden; }
+.progress div { height: 100%; border-radius: 9px; animation: fill .9s ease both; }
+
+.table-card { overflow: hidden; }
+.table-scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; min-width: 540px; text-align: right; }
+th { color: var(--muted); font-size: 11px; font-weight: 500; }
+td { font-size: 12px; }
+th, td { padding: 15px 13px; border-bottom: 1px solid #252a3d; }
+tbody tr:last-child td { border-bottom: 0; }
+tbody tr:hover { background: #ffffff05; }
+
+.user-cell { display: flex; align-items: center; gap: 10px; }
+.user-mini {
+  width: 34px; height: 34px; display: grid; place-items: center;
+  background: #29233e; border-radius: 10px; color: #c4b5fd;
+}
+.user-name { font-weight: 600; }
+.user-email { font-size: 10px; color: var(--muted); margin-top: 4px; direction: ltr; text-align: right; }
+
+.badge {
+  display: inline-block; border-radius: 7px; padding: 5px 9px; font-size: 10px;
+}
+.badge-ok { background: #34d39918; color: var(--green); }
+.badge-pending { background: #fb923c18; color: #fb923c; }
+.badge-off { background: #fb718518; color: var(--red); }
+
+.footer { text-align: center; color: #626982; font-size: 11px; padding: 24px 0 5px; }
+
+.page { display: none; }
+.page.active { display: block; animation: fade .3s ease; }
+
+.mobile-menu { display: none; }
+
+.toast {
+  position: fixed;
+  bottom: 22px;
+  left: 22px;
+  background: #1b2031;
+  border: 1px solid #3c4260;
+  border-radius: 12px;
+  padding: 14px 19px;
+  color: white;
+  font-size: 12px;
+  z-index: 100;
+  box-shadow: 0 10px 40px #0005;
+  animation: rise .3s;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #0009;
+  z-index: 15;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fill { from { width: 0; } }
+
+@media(max-width: 1150px) {
+  .stats { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .main { padding: 24px; }
+  .content-grid { grid-template-columns: minmax(0,1.4fr) minmax(230px,1fr); }
+}
+
+@media(max-width: 850px) {
+  .sidebar {
+    position: fixed; right: 0; top: 0; bottom: 0;
+    transform: translateX(105%);
+    width: 270px;
+    overflow-y: auto;
+  }
+  .sidebar.open { transform: translateX(0); }
+  .overlay.show { display: block; }
+  .mobile-menu { display: grid; }
+  .content-grid { grid-template-columns: 1fr; }
+  .main { padding: 20px; }
+  .search { width: 160px; }
+}
+
+@media(max-width: 560px) {
+  .main { padding: 15px; }
+  .topbar { margin-bottom: 25px; }
+  .topbar h1 { font-size: 19px; }
+  .top-left { gap: 8px; }
+  .search { display: none; }
+  .welcome { align-items: flex-start; flex-direction: column; }
+  .welcome h2 { font-size: 18px; }
+  .stats { gap: 10px; }
+  .card { padding: 14px; border-radius: 14px; }
+  .stat-icon { width: 34px; height: 34px; font-size: 16px; }
+  .stat-head { font-size: 10px; }
+  .stat-number { font-size: 21px; margin: 14px 0 8px; }
+  .stat-foot { font-size: 9px; }
+  .chart-wrap { height: 200px; }
+  .card-title h3 { font-size: 12px; }
+  .icon-btn { width: 39px; height: 39px; }
+}
+</style>
+</head>
+
+<body>
+<div class="layout">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      NEXORA <span class="logo">✦</span>
+    </div>
+
+    <div class="nav-label">منوی اصلی</div>
+    <a class="nav-item active" data-page="dashboard"><span class="nav-icon">▦</span> داشبورد</a>
+    <a class="nav-item" data-page="analytics"><span class="nav-icon">◈</span> تحلیل و آمار</a>
+    <a class="nav-item" data-page="users"><span class="nav-icon">♙</span> کاربران</a>
+    <a class="nav-item" data-page="projects"><span class="nav-icon">▣</span> پروژه‌ها</a>
+    <a class="nav-item" data-page="messages"><span class="nav-icon">✉</span> پیام‌ها</a>
+
+    <div class="nav-label">تنظیمات</div>
+    <a class="nav-item" data-page="settings"><span class="nav-icon">⚙</span> تنظیمات</a>
+
+    <div class="sidebar-bottom">
+      <div class="plan">
+        <strong>✨ پنل حرفه‌ای</strong>
+        <p>به داشبورد NEXORA خوش آمدید. همه چیز را از یک مکان مدیریت کنید.</p>
+        <button onclick="notify('این یک نسخه نمایشی است.')">اطلاعات بیشتر</button>
+      </div>
+    </div>
+  </aside>
+
+  <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+  <main class="main">
+    <header class="topbar">
+      <div class="top-right">
+        <button class="icon-btn mobile-menu" onclick="toggleMenu()" aria-label="باز کردن منو">☰</button>
+        <div>
+          <h1 id="pageTitle">داشبورد</h1>
+          <div class="subtitle" id="pageSubtitle">نمای کلی عملکرد سیستم</div>
+        </div>
+      </div>
+
+      <div class="top-left">
+        <input class="search" id="globalSearch" placeholder="جست‌وجو..." aria-label="جست‌وجو">
+        <button class="icon-btn" onclick="notify('اعلان جدیدی ندارید.')" aria-label="اعلان‌ها">
+          ♧ <span class="dot"></span>
+        </button>
+        <button class="icon-btn" onclick="toggleFullscreen()" aria-label="تمام صفحه">⛶</button>
+        <div class="avatar" title="مدیر سیستم">N</div>
+      </div>
+    </header>
+
+    <!-- DASHBOARD -->
+    <section class="page active" id="dashboard">
+      <div class="welcome">
+        <div>
+          <h2>درود، مدیر عزیز 👋</h2>
+          <p>در اینجا می‌توانید وضعیت کلی سیستم خود را مشاهده کنید.</p>
+        </div>
+        <button class="primary-btn" onclick="exportData()">⬇ خروجی اطلاعات</button>
+      </div>
+
+      <div class="stats">
+        <article class="card">
+          <div class="stat-head"><span>کل کاربران</span><span class="stat-icon purple">♙</span></div>
+          <div class="stat-number">24,892</div>
+          <div class="stat-foot"><span class="positive">↗ ۱۲.۸٪+</span> نسبت به ماه قبل</div>
+        </article>
+        <article class="card">
+          <div class="stat-head"><span>درآمد کل</span><span class="stat-icon green">＄</span></div>
+          <div class="stat-number">18,420</div>
+          <div class="stat-foot"><span class="positive">↗ ۸.۲٪+</span> نسبت به ماه قبل</div>
+        </article>
+        <article class="card">
+          <div class="stat-head"><span>بازدید فعال</span><span class="stat-icon blue">◉</span></div>
+          <div class="stat-number">1,429</div>
+          <div class="stat-foot"><span class="positive">↗ ۴.۶٪+</span> نسبت به ماه قبل</div>
+        </article>
+        <article class="card">
+          <div class="stat-head"><span>نرخ تبدیل</span><span class="stat-icon orange">↗</span></div>
+          <div class="stat-number">6.84%</div>
+          <div class="stat-foot"><span class="positive">↗ ۱.۲٪+</span> نسبت به ماه قبل</div>
+        </article>
+      </div>
+
+      <div class="content-grid">
+        <article class="card">
+          <div class="card-title">
+            <div><h3>آمار فعالیت کاربران</h3><p>مقایسه بازدید و ثبت‌نام</p></div>
+            <select id="period" aria-label="بازه زمانی">
+              <option value="week">۷ روز اخیر</option>
+              <option value="month">۳۰ روز اخیر</option>
+              <option value="year">۱۲ ماه اخیر</option>
+            </select>
+          </div>
+          <div class="legend">
+            <span><i style="background:#8b5cf6"></i> بازدید</span>
+            <span><i style="background:#22d3ee"></i> ثبت‌نام</span>
+          </div>
+          <div class="chart-wrap"><canvas id="activityChart"></canvas></div>
+        </article>
+
+        <article class="card">
+          <div class="card-title">
+            <div><h3>منابع ورودی</h3><p>توزیع نمونه‌ای بازدیدها</p></div>
+            <span style="color:var(--cyan)">◎</span>
+          </div>
+          <div class="sources">
+            <div>
+              <div class="source-head"><span>جست‌وجوی مستقیم</span><span>۴۲٪</span></div>
+              <div class="progress"><div style="width:42%;background:#8b5cf6"></div></div>
+            </div>
+            <div>
+              <div class="source-head"><span>شبکه‌های اجتماعی</span><span>۲۸٪</span></div>
+              <div class="progress"><div style="width:28%;background:#22d3ee"></div></div>
+            </div>
+            <div>
+              <div class="source-head"><span>لینک‌های ارجاعی</span><span>۱۸٪</span></div>
+              <div class="progress"><div style="width:18%;background:#34d399"></div></div>
+            </div>
+            <div>
+              <div class="source-head"><span>سایر منابع</span><span>۱۲٪</span></div>
+              <div class="progress"><div style="width:12%;background:#fb923c"></div></div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <article class="card table-card">
+        <div class="card-title">
+          <div><h3>آخرین کاربران</h3><p>فهرست نمونه کاربران ثبت‌شده</p></div>
+          <button class="primary-btn" onclick="showPage('users')">مشاهده همه</button>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>کاربر</th><th>تاریخ عضویت</th><th>وضعیت</th><th>نقش</th></tr></thead>
+            <tbody id="recentUsers"></tbody>
+          </table>
+        </div>
+      </article>
+    </section>
+
+    <!-- ANALYTICS -->
+    <section class="page" id="analytics">
+      <div class="welcome">
+        <div><h2>تحلیل و آمار 📊</h2><p>نمایش داده‌های آماری نمونه</p></div>
+        <button class="primary-btn" onclick="drawChart()">↻ به‌روزرسانی نمودار</button>
+      </div>
+      <div class="stats">
+        <article class="card"><div class="stat-head">میانگین بازدید</div><div class="stat-number">8,245</div><div class="stat-foot">داده نمایشی</div></article>
+        <article class="card"><div class="stat-head">کاربران جدید</div><div class="stat-number">1,204</div><div class="stat-foot">داده نمایشی</div></article>
+        <article class="card"><div class="stat-head">مدت حضور</div><div class="stat-number">4:32</div><div class="stat-foot">دقیقه به‌طور میانگین</div></article>
+        <article class="card"><div class="stat-head">نرخ بازگشت</div><div class="stat-number">38.2%</div><div class="stat-foot">داده نمایشی</div></article>
+      </div>
+      <article class="card">
+        <div class="card-title"><div><h3>نمودار فعالیت</h3><p>بازه را تغییر دهید</p></div><select id="period2"><option value="week">هفتگی</option><option value="month">ماهانه</option><option value="year">سالانه</option></select></div>
+        <div class="chart-wrap" style="height:350px"><canvas id="activityChart2"></canvas></div>
+      </article>
+    </section>
+
+    <!-- USERS -->
+    <section class="page" id="users">
+      <div class="welcome">
+        <div><h2>مدیریت کاربران 👥</h2><p>جست‌وجو و بررسی فهرست کاربران نمونه</p></div>
+        <button class="primary-btn" onclick="notify('برای افزودن واقعی کاربران، اتصال به بک‌اند لازم است.')">＋ افزودن کاربر</button>
+      </div>
+      <article class="card table-card">
+        <div class="card-title"><div><h3>فهرست کاربران</h3><p id="userCount">۵ کاربر نمونه</p></div><input class="search" id="userSearch" placeholder="جست‌وجوی کاربران..."></div>
+        <div class="table-scroll">
+          <table><thead><tr><th>کاربر</th><th>تاریخ عضویت</th><th>وضعیت</th><th>نقش</th><th>عملیات</th></tr></thead><tbody id="allUsers"></tbody></table>
+        </div>
+      </article>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="page" id="projects">
+      <div class="welcome"><div><h2>پروژه‌ها 🗂️</h2><p>وضعیت پروژه‌های نمونه</p></div><button class="primary-btn" onclick="notify('برای ایجاد پروژه واقعی، بک‌اند لازم است.')">＋ پروژه جدید</button></div>
+      <div class="stats">
+        <article class="card"><div class="stat-head">کل پروژه‌ها</div><div class="stat-number">12</div></article>
+        <article class="card"><div class="stat-head">در حال اجرا</div><div class="stat-number">5</div></article>
+        <article class="card"><div class="stat-head">تکمیل‌شده</div><div class="stat-number">6</div></article>
+        <article class="card"><div class="stat-head">متوقف</div><div class="stat-number">1</div></article>
+      </div>
+      <div class="content-grid">
+        <article class="card"><h3>وب‌سایت اصلی</h3><p class="subtitle">طراحی و توسعه داشبورد</p><div class="progress" style="margin-top:20px"><div style="width:75%;background:#8b5cf6"></div></div><p class="subtitle">۷۵٪ تکمیل</p></article>
+        <article class="card"><h3>سامانه کاربران</h3><p class="subtitle">مدیریت حساب‌ها و نقش‌ها</p><div class="progress" style="margin-top:20px"><div style="width:45%;background:#22d3ee"></div></div><p class="subtitle">۴۵٪ تکمیل</p></article>
+        <article class="card"><h3>گزارش‌گیری</h3><p class="subtitle">تحلیل داده‌ها</p><div class="progress" style="margin-top:20px"><div style="width:100%;background:#34d399"></div></div><p class="subtitle">۱۰۰٪ تکمیل</p></article>
+      </div>
+    </section>
+
+    <!-- MESSAGES -->
+    <section class="page" id="messages">
+      <div class="welcome"><div><h2>پیام‌ها ✉️</h2><p>مرکز پیام‌های نمایشی</p></div></div>
+      <article class="card">
+        <h3>پیام‌های اخیر</h3>
+        <p class="subtitle" style="margin-top:22px">🔔 پیام سیستمی — به پنل NEXORA خوش آمدید.</p>
+        <p class="subtitle" style="margin-top:22px">📊 گزارش آماری نمونه آماده مشاهده است.</p>
+        <p class="subtitle" style="margin-top:22px">⚙️ تنظیمات پنل را می‌توانید از بخش تنظیمات بررسی کنید.</p>
+      </article>
+    </section>
+
+    <!-- SETTINGS -->
+    <section class="page" id="settings">
+      <div class="welcome"><div><h2>تنظیمات ⚙️</h2><p>شخصی‌سازی رابط کاربری</p></div></div>
+      <article class="card" style="max-width:650px">
+        <h3>تنظیمات عمومی</h3>
+        <label style="display:block;margin-top:25px;font-size:12px">نام پنل</label>
+        <input id="siteName" value="NEXORA" style="width:100%;margin-top:8px;padding:12px;border:1px solid var(--border);background:var(--panel2);color:white;border-radius:10px;outline:none">
+        <label style="display:block;margin-top:22px;font-size:12px">توضیحات پنل</label>
+        <input id="siteDesc" value="پنل مدیریت مدرن" style="width:100%;margin-top:8px;padding:12px;border:1px solid var(--border);background:var(--panel2);color:white;border-radius:10px;outline:none">
+        <button class="primary-btn" style="margin-top:22px" onclick="saveSettings()">ذخیره تنظیمات</button>
+        <p class="subtitle" style="margin-top:20px">این تنظیمات فقط در همین مرورگر ذخیره می‌شوند.</p>
+      </article>
+    </section>
+
+    <footer class="footer">NEXORA Dashboard © <span id="year"></span> — ساخته‌شده با HTML، CSS و JavaScript</footer>
+  </main>
+</div>
+
+<div id="toastBox"></div>
+
+<script>
+const users = [
+  {name:'علی محمدی',email:'ali@example.com',date:'۱۴۰۵/۰۷/۱۵',status:'فعال',role:'مدیر',icon:'ع'},
+  {name:'سارا احمدی',email:'sara@example.com',date:'۱۴۰۵/۰۷/۱۴',status:'فعال',role:'کاربر',icon:'س'},
+  {name:'امیر رضایی',email:'amir@example.com',date:'۱۴۰۵/۰۷/۱۳',status:'در انتظار',role:'کاربر',icon:'ا'},
+  {name:'نگار کریمی',email:'negar@example.com',date:'۱۴۰۵/۰۷/۱۲',status:'فعال',role:'ویرایشگر',icon:'ن'},
+  {name:'رضا حسینی',email:'reza@example.com',date:'۱۴۰۵/۰۷/۱۱',status:'غیرفعال',role:'کاربر',icon:'ر'}
+];
+
+const titles = {
+  dashboard:['داشبورد','نمای کلی عملکرد سیستم'],
+  analytics:['تحلیل و آمار','گزارش‌های تحلیلی'],
+  users:['کاربران','مدیریت کاربران'],
+  projects:['پروژه‌ها','مدیریت پروژه‌ها'],
+  messages:['پیام‌ها','مرکز پیام‌ها'],
+  settings:['تنظیمات','تنظیمات پنل']
+};
+
+function renderUsers(list, target, actions=false) {
+  const el = document.getElementById(target);
+  el.innerHTML = list.map((u) => {
+    const statusClass = u.status === 'فعال' ? 'badge-ok' : u.status === 'در انتظار' ? 'badge-pending' : 'badge-off';
+    return `<tr>
+      <td><div class="user-cell"><div class="user-mini">${u.icon}</div><div><div class="user-name">${escapeHTML(u.name)}</div><div class="user-email">${escapeHTML(u.email)}</div></div></div></td>
+      <td>${u.date}</td>
+      <td><span class="badge ${statusClass}">${u.status}</span></td>
+      <td>${escapeHTML(u.role)}</td>
+      ${actions ? `<td><button class="icon-btn" style="width:34px;height:32px" onclick="notify('این عملیات در نسخه نمایشی غیرفعال است.')">⋯</button></td>` : ''}
+    </tr>`;
+  }).join('');
+}
+
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, ch => ({
+    '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'
+  })[ch]);
+}
+
+function showPage(id) {
+  if (!titles[id]) return;
+  document.querySelectorAll('.page').forEach(p => p.classList.toggle('active', p.id === id));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.toggle('active', n.dataset.page === id));
+  document.getElementById('pageTitle').textContent = titles[id][0];
+  document.getElementById('pageSubtitle').textContent = titles[id][1];
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('overlay').classList.remove('show');
+  if (id === 'analytics') drawChart();
+}
+
+document.querySelectorAll('.nav-item').forEach(item => {
+  item.addEventListener('click', () => showPage(item.dataset.page));
+});
+
+function toggleMenu() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('show');
+}
+
+let toastTimer;
+function notify(message) {
+  const box = document.getElementById('toastBox');
+  box.innerHTML = `<div class="toast">${escapeHTML(message)}</div>`;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => box.innerHTML = '', 3000);
+}
+
+async function toggleFullscreen() {
+  try {
+    if (!document.fullscreenElement) await document.documentElement.requestFullscreen();
+    else await document.exitFullscreen();
+  } catch {
+    notify('حالت تمام‌صفحه در این مرورگر در دسترس نیست.');
+  }
+}
+
+function exportData() {
+  const csv = [
+    ['نام','ایمیل','تاریخ عضویت','وضعیت','نقش'],
+    ...users.map(u => [u.name,u.email,u.date,u.status,u.role])
+  ].map(row => row.map(v => `"${String(v).replace(/"/g,'""')}"`).join(',')).join('\r\n');
+
+  const blob = new Blob(['\uFEFF' + csv], {type:'text/csv;charset=utf-8;'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'nexora-users.csv';
+  a.click();
+  URL.revokeObjectURL(url);
+  notify('فایل خروجی کاربران آماده شد.');
+}
+
+function saveSettings() {
+  const name = document.getElementById('siteName').value.trim() || 'NEXORA';
+  const desc = document.getElementById('siteDesc').value.trim();
+  try {
+    localStorage.setItem('nexora_name', name);
+    localStorage.setItem('nexora_desc', desc);
+    document.title = name + ' | پنل مدیریت';
+    document.querySelector('.brand').innerHTML = `${escapeHTML(name)} <span class="logo">✦</span>`;
+    notify('تنظیمات در این مرورگر ذخیره شد.');
+  } catch {
+    notify('ذخیره‌سازی مرورگر در دسترس نیست.');
+  }
+}
+
+const chartData = {
+  week: {
+    labels:['شنبه','یکشنبه','دوشنبه','سه‌شنبه','چهارشنبه','پنجشنبه','جمعه'],
+    a:[35,58,43,78,53,90,70], b:[20,35,29,47,39,57,45]
+  },
+  month: {
+    labels:['هفته ۱','هفته ۲','هفته ۳','هفته ۴'],
+    a:[45,70,55,95], b:[24,40,36,60]
+  },
+  year: {
+    labels:['فروردین','اردیبهشت','خرداد','تیر','مرداد','شهریور','مهر','آبان','آذر','دی','بهمن','اسفند'],
+    a:[30,45,40,60,55,75,68,80,65,92,78,100],
+    b:[18,30,27,38,35,48,42,53,44,62,54,70]
+  }
+};
+
+function drawOneChart(canvas, period) {
+  if (!canvas || !canvas.offsetParent) return;
+  const rect = canvas.getBoundingClientRect();
+  if (!rect.width || !rect.height) return;
+
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = Math.round(rect.width * dpr);
+  canvas.height = Math.round(rect.height * dpr);
+
+  const ctx = canvas.getContext('2d');
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+
+  const w = rect.width, h = rect.height;
+  ctx.clearRect(0,0,w,h);
+
+  const data = chartData[period] || chartData.week;
+  const pad = {top:15,right:12,bottom:32,left:30};
+  const cw = w-pad.left-pad.right;
+  const ch = h-pad.top-pad.bottom;
+  const max = 110;
+
+  ctx.font = '10px Vazirmatn, sans-serif';
+  ctx.textAlign = 'right';
+  ctx.textBaseline = 'middle';
+
+  for (let i=0;i<=4;i++) {
+    const y = pad.top + ch*i/4;
+    ctx.strokeStyle = '#252a3d';
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(pad.left,y); ctx.lineTo(w-pad.right,y); ctx.stroke();
+    ctx.fillStyle = '#777f9b';
+    ctx.fillText(String(100-i*25),pad.left-7,y);
+  }
+
+  function drawLine(values,color,fill) {
+    const points = values.map((v,i)=>({
+      x:pad.left + (data.labels.length===1 ? cw/2 : cw*i/(data.labels.length-1)),
+      y:pad.top + ch*(1-v/max)
+    }));
+
+    if (fill) {
+      const gradient = ctx.createLinearGradient(0,pad.top,0,h-pad.bottom);
+      gradient.addColorStop(0,color === '#8b5cf6' ? '#8b5cf633' : '#22d3ee24');
+      gradient.addColorStop(1,'#12152200');
+      ctx.beginPath();
+      points.forEach((p,i)=>i ? ctx.lineTo(p.x,p.y) : ctx.moveTo(p.x,p.y));
+      ctx.lineTo(points[points.length-1].x,h-pad.bottom);
+      ctx.lineTo(points[0].x,h-pad.bottom);
+      ctx.closePath();
+      ctx.fillStyle = gradient;
+      ctx.fill();
+    }
+
+    ctx.beginPath();
+    points.forEach((p,i)=>i ? ctx.lineTo(p.x,p.y) : ctx.moveTo(p.x,p.y));
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 2.5;
+    ctx.lineJoin = 'round';
+    ctx.lineCap = 'round';
+    ctx.stroke();
+
+    points.forEach(p=>{
+      ctx.beginPath(); ctx.arc(p.x,p.y,3,0,Math.PI*2);
+      ctx.fillStyle = color; ctx.fill();
+    });
+  }
+
+  drawLine(data.a,'#8b5cf6',true);
+  drawLine(data.b,'#22d3ee',false);
+
+  ctx.fillStyle = '#858ca5';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'top';
+  const step = data.labels.length > 8 ? 2 : 1;
+  data.labels.forEach((label,i)=>{
+    if (i % step !== 0 && i !== data.labels.length-1) return;
+    const x = pad.left + (data.labels.length===1 ? cw/2 : cw*i/(data.labels.length-1));
+    ctx.fillText(label,x,h-pad.bottom+12);
+  });
+}
+
+function drawChart() {
+  const p1 = document.getElementById('period')?.value || 'week';
+  const p2 = document.getElementById('period2')?.value || p1;
+  drawOneChart(document.getElementById('activityChart'),p1);
+  drawOneChart(document.getElementById('activityChart2'),p2);
+}
+
+document.getElementById('period').addEventListener('change',drawChart);
+document.getElementById('period2').addEventListener('change',drawChart);
+
+function filterUsers(value) {
+  const q = value.trim().toLowerCase();
+  const filtered = users.filter(u => `${u.name} ${u.email} ${u.role} ${u.status}`.toLowerCase().includes(q));
+  renderUsers(filtered,'allUsers',true);
+  document.getElementById('userCount').textContent = `${filtered.length} کاربر`;
+}
+
+document.getElementById('userSearch').addEventListener('input', e => filterUsers(e.target.value));
+
+document.getElementById('globalSearch').addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    showPage('users');
+    document.getElementById('userSearch').value = e.target.value;
+    filterUsers(e.target.value);
+  }
+});
+
+document.getElementById('year').textContent = new Date().getFullYear();
+
+renderUsers(users.slice(0,4),'recentUsers');
+renderUsers(users,'allUsers',true);
+
+try {
+  const savedName = localStorage.getItem('nexora_name');
+  const savedDesc = localStorage.getItem('nexora_desc');
+  if (savedName) {
+    document.getElementById('siteName').value = savedName;
+    document.querySelector('.brand').innerHTML = `${escapeHTML(savedName)} <span class="logo">✦</span>`;
+    document.title = savedName + ' | پنل مدیریت';
+  }
+  if (savedDesc) document.getElementById('siteDesc').value = savedDesc;
+} catch {}
+
+if ('ResizeObserver' in window) {
+  const observer = new ResizeObserver(() => drawChart());
+  observer.observe(document.querySelector('.chart-wrap'));
+} else {
+  window.addEventListener('resize',drawChart);
+}
+
+if (document.fonts?.ready) {
+  document.fonts.ready.then(drawChart);
+} else {
+  window.addEventListener('load',drawChart);
+}
+setTimeout(drawChart,100);
+</script>
+</body>
+</html>
